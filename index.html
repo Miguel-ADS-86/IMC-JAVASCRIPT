@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Testando funcoes</title>
+</head>
+<body>
+
+    <div class="form">
+        <img src="dieta.jpg" alt="frutas e legumes">
+        <form action="">
+                <input type="text" id="classificacao" placeholder="CLACIFICAÇÃO" disabled />
+                <input type="text" id="displayIMC" placeholder="IMC" disabled />
+                <input type="text" placeholder="PESO" id="peso" />
+                <input type="text" placeholder="ALTURA" id="altura"/>
+                <input type="button" value="calcular" onclick="imc()">
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+
+           function calcularIMC(peso, altura){
+            if(peso === "" || altura === ""){
+                alert('preencha os campos vazios');
+                }else{
+                    return (peso / Math.pow(altura,2));
+                }
+         }
+
+        function limparCampos(){
+             document.getElementById('peso').value = '';
+             document.getElementById('altura').value = ''; 
+        }
+
+        function clacificacaoIMC(valor){
+           if(valor < 18.5){
+             document.getElementById('classificacao').style.backgroundColor = '#83c635';
+             return 'Baixo peso';
+           }else if(valor >= 18.5 && valor <= 24.99 ){
+             document.getElementById('classificacao').style.backgroundColor = '#c0d90b';
+             return 'Normal';
+           }else if(valor >= 25 && valor <= 29.99){
+             document.getElementById('classificacao').style.backgroundColor = '#fca500';
+             return 'Sobrepeso';
+           }else if(valor > 29.99){
+              document.getElementById('classificacao').style.backgroundColor = '#f67600';
+              return 'Obesidade';
+           }
+        }
+
+          function imc(){
+            let peso = document.getElementById('peso').value;
+            let altura = document.getElementById('altura').value;
+            let valor = document.getElementById('displayIMC').value = Math.ceil(calcularIMC(peso, altura));
+            document.getElementById('classificacao').value = clacificacaoIMC(valor);
+            //limparCampos();
+          }
+    
+    </script>
+</body>
+</html>
